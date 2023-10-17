@@ -3,21 +3,43 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.replace_gender = void 0;
+exports.replaceGender = exports.capitalizeFirstLetter = void 0;
 var mfn_json_1 = __importDefault(require("./mfn.json"));
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+function capitalizeFirstLetter(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
 }
-function replace_gender(word) {
-    var find = word;
-    var return_value = word;
-    find = word.toLocaleLowerCase();
+exports.capitalizeFirstLetter = capitalizeFirstLetter;
+function findPunctuation(word) {
+    for (var i = 0; i < word.length; i++) {
+        if (!word.charAt(i).match(/[a-zA-Z]/g))
+            return (i);
+    }
+    return (0);
+}
+function normalise(word) {
+    word = word.toLocaleLowerCase();
+    var punct = findPunctuation(word);
+    if (punct)
+        return (word.substring(0, punct));
+    return (word);
+}
+function restore(word, returnValue) {
+    if (word == capitalizeFirstLetter(word))
+        returnValue = capitalizeFirstLetter(returnValue);
+    var punct = findPunctuation(word);
+    if (punct) {
+        var add = word.substring(punct, word.length);
+        returnValue += add;
+    }
+    return (returnValue);
+}
+function replaceGender(word) {
+    var find = normalise(word);
+    var returnValue = find;
     mfn_json_1.default.forEach(function (value) {
         if (find == value.m || find == value.f)
-            return_value = value.n;
+            returnValue = value.n;
     });
-    if (word == capitalizeFirstLetter(word))
-        return_value = capitalizeFirstLetter(return_value);
-    return (return_value);
+    return (restore(word, returnValue));
 }
-exports.replace_gender = replace_gender;
+exports.replaceGender = replaceGender;

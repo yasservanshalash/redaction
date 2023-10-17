@@ -1,20 +1,48 @@
 import mfn from './mfn.json';
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+export function capitalizeFirstLetter(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-export function replace_gender(word:string)
+function findPunctuation(word)
 {
-	let find:string = word;
-	let return_value:string = word;
+	for(let i = 0; i < word.length; i++)
+	{
+		if (!word.charAt(i).match(/[a-zA-Z]/g))
+			return(i);
+	}
+	return (0);
+}
 
-	find = word.toLocaleLowerCase();
+function normalise(word) {
+	word = word.toLocaleLowerCase();
+	let punct = findPunctuation(word);
+	if (punct)
+		return (word.substring(0, punct));
+	return (word);
+}
+
+function restore(word:string, returnValue:string)
+{
+	if (word == capitalizeFirstLetter(word))
+		returnValue = capitalizeFirstLetter(returnValue);
+	let punct = findPunctuation(word);
+	if (punct)
+	{
+		let add:string = word.substring(punct, word.length)
+		returnValue += add;
+	}
+	return (returnValue);
+}
+
+export function replaceGender(word:string)
+{
+	let find:string = normalise(word);
+	let returnValue:string = find;
+
 	mfn.forEach(function (value){
 		if (find == value.m || find == value.f)
-			return_value = value.n;
+			returnValue = value.n;
 	});
-	if (word == capitalizeFirstLetter(word))
-		return_value = capitalizeFirstLetter(return_value);
-	return (return_value);
+	return(restore(word, returnValue));
 }

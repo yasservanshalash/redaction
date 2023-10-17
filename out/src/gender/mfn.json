@@ -378,20 +378,5 @@
         "m": "swain",
         "f": "nymph",
         "n": "spirit"
-    },
-    {
-        "m": "he",
-        "f": "she",
-        "n": "they"
-    },
-    {
-        "m": "his",
-        "f": "her",
-        "n": "their"
-    },
-    {
-        "m": "him",
-        "f": "her",
-        "n": "them"
     }
 ]
