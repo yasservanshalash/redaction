@@ -1,11 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var gender_1 = require("./gender/gender");
-var cv = "She was the best waitress in the world in 2013";
-console.log("Received: " + cv);
-var words = cv.split(" ");
-words.forEach(function (value, index) {
-    words[index] = (0, gender_1.replace_gender)(value);
-});
-var redacted = words.join(" ");
-console.log("Return: " + redacted);
+var redact_1 = require("./src/redact");
+var cv = "Alice won the best actress award in 2013. She was the first person on the moon.";
+var name = "Alice";
+console.log(cv);
+console.log((0, redact_1.redact)(cv, name));
