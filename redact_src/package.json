@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@types/node": "^20.8.7"
+  },
+  "dependencies": {
+    "compromise": "^14.10.0"
+  }
+}

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-const nlp: any = require('compromise');
+import nlp from 'compromise';
 
 export function redactOther(text: string, fullName: string): string {
 	let doc = nlp(text);
@@ -34,28 +34,28 @@ export function redactOther(text: string, fullName: string): string {
 
 //	Personal info
 	doc.match(fullName).forEach((match) => {
-		match.replace('Candidate');
+		match.replace('The candidate');
 	});
 
 	let names:string[] = fullName.split(" ");
 	names.forEach(name => {
 		doc.match(name).forEach((match) => {
-			match.replace('Candidate');
+			match.replace('The candidate');
 		});
 	});
 
 // Location
 	doc.match('#Country').forEach((match) => {
-		match.replace('Country');
+		match.replace('[Country]');
 	});
 	doc.match('#Region').forEach((match) => {
-		match.replace('Region');
+		match.replace('[Region]');
 	});
 	doc.match('#City').forEach((match) => {
-		match.replace('City');
+		match.replace('[City]');
 	});
 	doc.match('#Address').forEach((match) => {
-		match.replace('Address');
+		match.replace('[Address]');
 	});
 
 // Pronouns (gender)
