@@ -6,6 +6,7 @@ export function capitalizeFirstLetter(word) {
 
 function findAndReplace(word:string)
 {
+	console.log(word);
 	let find:string = word.toLocaleLowerCase();
 	let returnValue:string = find;
 
@@ -22,12 +23,12 @@ function findAndReplace(word:string)
 export function replaceGender(cv:string)
 {
 	let i = 0;
-	while (i < cv.length && !cv.charAt(i).match(/[a-z]/i))
+	while (i < cv.length && !cv.charAt(i).match(/[a-zA-Z]/))
 		i++;
 	let word = cv[i++];
 	while (i < cv.length)
 	{
-		if (cv.charAt(i).match(/[a-z]/i))
+		if (cv.charAt(i).match(/[a-zA-Z]/))
 			word += cv.charAt(i);
 		else
 		{
@@ -35,17 +36,22 @@ export function replaceGender(cv:string)
 			if (word != replaceWord)
 			{
 				let fix = 0;
-				if (i > 3 && cv.charAt(i - word.length - 1) == "n"
-					&& !(replaceWord.charAt(0).match(/aeiou/i)))
-					fix = 3;
+				if (i > 3 && cv.charAt(i - word.length - 2) == "n"
+					&& !(replaceWord.charAt(0).match(/aeiouAEIOU/)))
+					fix = 2;
 				let edit = cv.substring(0, i - word.length - fix);
 				if (fix)
 					cv = edit + " " + replaceWord + cv.substring(i);
 				else
 					cv = edit + replaceWord + cv.substring(i);
-				i += replaceWord.length + 1;
+				let diff = 1;
+				if (word.length > replaceWord.length)
+					diff -= word.length - replaceWord.length;
+				else if (word.length > replaceWord.length)
+					diff += replaceWord.length - word.length;
+				i += diff;
 			}
-			while (i < cv.length && !cv.charAt(i).match(/[a-z]/i))
+			while (i < cv.length && !cv.charAt(i).match(/[a-zA-Z]/))
 				i++;
 			word = cv.charAt(i);
 		}
