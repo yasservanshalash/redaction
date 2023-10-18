@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   redact.ts                                          :+:    :+:            */
+/*   redactAll.ts                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mstegema <mstegema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/17 15:53:05 by mstegema      #+#    #+#                 */
-/*   Updated: 2023/10/18 13:03:36 by mstegema      ########   odam.nl         */
+/*   Updated: 2023/10/18 15:18:55 by mstegema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,26 @@ function redactAll(text: string, fullName: string): string {
 		hers: 'their',
 	};
 
-//	Name
+	const maritalStatus = /(\bmarital status\b|\bmarital\b|\bmarriage\b)[^,.:;]*[:.,;]?[^,.:;]*/gi;
+
+//	Personal info
 	doc.match(fullName).forEach((match) => {
 		match.replace('Candidate');
 	});
+	doc = doc.replace(maritalStatus, 'Marital status: redacted');
 
 // Location
 	doc.match('#Country').forEach((match) => {
 		match.replace('Country');
 	});
+	doc.match('#Region').forEach((match) => {
+		match.replace('Region');
+	});
 	doc.match('#City').forEach((match) => {
 		match.replace('City');
 	});
-	doc.match('#Region').forEach((match) => {
-		match.replace('Region');
+	doc.match('#Address').forEach((match) => {
+		match.replace('Address');
 	});
 
 // Pronouns (gender)
@@ -67,17 +73,19 @@ doc.match('#Pronoun #Noun').match('#Pronoun').forEach((match) => {
 doc.match('#Pronoun #Verb').verbs().toPastTense()
 
 // Dates
-	doc.match('#Date').not('years').forEach((match) => {
-		match.replace('Date');
+	// doc.match('#Year * #Year').forEach((match) => {
+	// 	match.replace('Year');
+	// });
+
+	doc.match('#Year').forEach((match) => {
+		match.replace('Year');
 	});
 
 // Contact information
-	doc.match('#Email').forEach((match) => {
-		match.replace('***@***.***');
-	});
-	doc.phoneNumbers().replace('(###) ###-###')
-	doc.atMentions().replace('@***')
-	//linkedin yasser
+	doc.emails().replace('Email address');
+	// doc.phoneNumbers().replace('(###) ###-###')
+	// doc.atMentions().replace('@***')
+	// linkedin yasser
 
 	return doc.text();
 }
