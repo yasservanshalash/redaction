@@ -40,7 +40,7 @@ function replaceGender(cv) {
                     cv = edit + " " + replaceWord + cv.substring(i);
                 else
                     cv = edit + replaceWord + cv.substring(i);
-                var diff = 1;
+                var diff = 0;
                 if (word.length > replaceWord.length)
                     diff -= word.length - replaceWord.length;
                 else if (word.length > replaceWord.length)

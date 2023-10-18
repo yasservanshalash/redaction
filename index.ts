@@ -2,10 +2,12 @@ import {redact} from './redact_src/redact';
 
 let cv = `
 Yasser won the best actress award in 2013.
-An actress's greatest dream. She was a baroness.
+Yasser is a programmer.
+An actress's greatest dream. She is a baroness.
 A Mother. A girl in a big world. A waitress working nine till six. 
 She was the first woman on the moon.
 
+Marital Status: divorced 
 
 Yasser Shalash
 waiter at restaurant

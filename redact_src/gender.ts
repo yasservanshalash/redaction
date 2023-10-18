@@ -43,7 +43,7 @@ export function replaceGender(cv:string)
 					cv = edit + " " + replaceWord + cv.substring(i);
 				else
 					cv = edit + replaceWord + cv.substring(i);
-				let diff = 1;
+				let diff = 0;
 				if (word.length > replaceWord.length)
 					diff -= word.length - replaceWord.length;
 				else if (word.length > replaceWord.length)

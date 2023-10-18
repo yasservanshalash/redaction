@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   redact.ts                                          :+:    :+:            */
+/*   redactAll.ts                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mstegema <mstegema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/17 15:53:05 by mstegema      #+#    #+#                 */
-/*   Updated: 2023/10/18 13:03:36 by mstegema      ########   odam.nl         */
+/*   Updated: 2023/10/18 15:37:24 by mstegema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,29 @@ export function redactOther(text: string, fullName: string): string {
 	};
 
 //	Name
-	doc.match(fullName).forEach((match) => {
+doc.match(fullName).forEach((match) => {
+	match.replace('Candidate');
+});
+
+let names:string[] = fullName.split(" ");
+names.forEach(name => {
+	doc.match(name).forEach((match) => {
 		match.replace('Candidate');
 	});
+});
 
 // Location
 	doc.match('#Country').forEach((match) => {
 		match.replace('Country');
 	});
+	doc.match('#Region').forEach((match) => {
+		match.replace('Region');
+	});
 	doc.match('#City').forEach((match) => {
 		match.replace('City');
 	});
-	doc.match('#Region').forEach((match) => {
-		match.replace('Region');
+	doc.match('#Address').forEach((match) => {
+		match.replace('Address');
 	});
 
 // Pronouns (gender)
@@ -67,17 +77,28 @@ doc.match('#Pronoun #Noun').match('#Pronoun').forEach((match) => {
 doc.match('#Pronoun #Verb').verbs().toPastTense()
 
 // Dates
-	doc.match('#Date').not('years').forEach((match) => {
-		match.replace('Date');
+		// working on showing timespan instead of years
+	// doc.match('#Year * #Year').forEach((match) => {
+	// 	match.replace('Year');
+	// });
+
+	doc.match('#Year').forEach((match) => {
+		match.replace('Year');
 	});
 
 // Contact information
-	doc.match('#Email').forEach((match) => {
-		match.replace('***@***.***');
-	});
-	doc.phoneNumbers().replace('(###) ###-###')
-	doc.atMentions().replace('@***')
-	//linkedin yasser
+	doc.emails().replace('Redacted Email address');
 
 	return doc.text();
 }
+
+// const fullName = "Ram Kumar"
+
+// // Some different test strings:
+// // const originalText = "I can only to something to me, but he can't."
+// // const originalText = "I called her and we went for a coffee but she had to leave early because of her job."
+// // const originalText = "His car was broken. She loves her sister. They are the best. He was ok. I spoke to her earlier."
+// const originalText = "RAM KUMAR\nMarketing and Sales Professional\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapi-bus\ndiam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus\nsed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora\ntorquent per conubia nostra, per inceptos himenaeos.\nMasters, Business Administration Graduated, July 2010\nSymbiosis Institute of Management Studies Marks 59%\nAICTE & UGC Board Division 2\nPune, Maharashtra\nBachelor, Technology Graduated, July 2008\nDeccan College of Engineering & Technology Marks 64%\nOsmania University Board Division 1\nHyderabad, Telangana\n10+2 Graduated, July 2004\nDPS Bokaro Marks 81%\nCBSE Board Division 1\nNew Delhi, Delhi\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\nLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum\nsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies Lorem\nipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis\nnatoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\nEducation\nProfessional Qualifications and Affiliations\nCareer Highlights\nAbout Me\n6 Years experience\nOctober 28, 1982\nMumbai, Maharashtra\nLinkedin.com/in/ramkumar\n+91.0000000000\nshri.babuji@shriresume.com\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum\n• Ipsum dolor\n• Nulla quis sem\n• Lorem ipsum\n• Integer nec odio\nApril 2014 – Current\nSales Manager\nSolvent Solutions Pvt Ltd\nKolkata, West Bangal\nLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum\nsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies Lorem\nipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis\nnatoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\nOctober 2011 – March 2014\nTeam Leader\nSerena Global Pvt Ltd\nGurgaon, Delhi-NCR\nLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum\nsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies Lorem\nipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis\nnatoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\nAugust 2009 – October 2011\nSales Assistant\nTamcoj Technologies\nPimpri-Pune, Maharashtra\nLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum\nsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies Lorem\nipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis\nnatoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\nSkills\nWork Experience\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Lorem ipsum dolor sit amet, consectetuer adipiscing elit lorem ipsum dolor sit.\n• Word 2010\n• Excel 2010\n• Power Point 2010\n• Hindi\n• English\n• Lorem ipsum dolor sit amet • Lorem ipsum dolor sit\n• Lorem ipsum dolor • Lorem ipsum\n• Lorem ipsum dolor sit\nFather’s Name: Mr. Abhijeet Kumar Marital Status: Single\nBirthday: October 28, 1982 Nationality: Indian\nGender: Male\nDeclaration\nI, Ram Kumar, hereby declare that the information contained herein is true and correct to the best of my knowledge\nand belief.\n____________________________\nRam Kumar Mumbai, Maharashtra\nMarch 1, 2015";
+// const newText = redactAll(originalText, fullName)
+// // console.log(originalText);
+// console.log(newText);

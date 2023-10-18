@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   redact.ts                                          :+:    :+:            */
+/*   redactAll.ts                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mstegema <mstegema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/17 15:53:05 by mstegema      #+#    #+#                 */
-/*   Updated: 2023/10/18 13:03:36 by mstegema      ########   odam.nl         */
+/*   Updated: 2023/10/18 15:37:24 by mstegema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 var nlp = require('compromise');
@@ -27,7 +27,7 @@ function redactAll(text, fullName) {
         his: 'their',
         hers: 'their',
     };
-    //	Name
+    //	Personal info
     doc.match(fullName).forEach(function (match) {
         match.replace('Candidate');
     });
@@ -35,11 +35,14 @@ function redactAll(text, fullName) {
     doc.match('#Country').forEach(function (match) {
         match.replace('Country');
     });
+    doc.match('#Region').forEach(function (match) {
+        match.replace('Region');
+    });
     doc.match('#City').forEach(function (match) {
         match.replace('City');
     });
-    doc.match('#Region').forEach(function (match) {
-        match.replace('Region');
+    doc.match('#Address').forEach(function (match) {
+        match.replace('Address');
     });
     // Pronouns (gender)
     doc.match('#Pronoun #Copula').match('was').forEach(function (match) {
@@ -59,16 +62,15 @@ function redactAll(text, fullName) {
     });
     doc.match('#Pronoun #Verb').verbs().toPastTense();
     // Dates
-    doc.match('#Date').not('years').forEach(function (match) {
-        match.replace('Date');
+    // working on showing timespan instead of years
+    // doc.match('#Year * #Year').forEach((match) => {
+    // 	match.replace('Year');
+    // });
+    doc.match('#Year').forEach(function (match) {
+        match.replace('Year');
     });
     // Contact information
-    doc.match('#Email').forEach(function (match) {
-        match.replace('***@***.***');
-    });
-    doc.phoneNumbers().replace('(###) ###-###');
-    doc.atMentions().replace('@***');
-    //linkedin yasser
+    doc.emails().replace('Redacted Email address');
     return doc.text();
 }
 var fullName = "Ram Kumar";
