@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var redact_1 = require("./src/redact");
-var cv = "Alice won the best actress award in 2013. An actress's greatest dream. She was a baroness. Mother. Queen. A girl in a big world. A waitress working nine till six. She was the first woman on the moon.";
+var cv = "Alice won the best actress award in 2013. An actress's greatest dream. She was a baroness, an empress. Mother. Queen. A girl in a big world. A waitress working nine till six. She was the first woman on the moon.";
 var name = "Alice";
 var new_cv = (0, redact_1.redact)(cv, name);
 console.log("Original: " + cv);
