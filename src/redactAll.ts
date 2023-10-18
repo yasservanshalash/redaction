@@ -6,7 +6,7 @@
 /*   By: mstegema <mstegema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/17 15:53:05 by mstegema      #+#    #+#                 */
-/*   Updated: 2023/10/18 15:18:55 by mstegema      ########   odam.nl         */
+/*   Updated: 2023/10/18 15:37:24 by mstegema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,10 @@ function redactAll(text: string, fullName: string): string {
 		hers: 'their',
 	};
 
-	const maritalStatus = /(\bmarital status\b|\bmarital\b|\bmarriage\b)[^,.:;]*[:.,;]?[^,.:;]*/gi;
-
 //	Personal info
 	doc.match(fullName).forEach((match) => {
 		match.replace('Candidate');
 	});
-	doc = doc.replace(maritalStatus, 'Marital status: redacted');
 
 // Location
 	doc.match('#Country').forEach((match) => {
@@ -73,6 +70,7 @@ doc.match('#Pronoun #Noun').match('#Pronoun').forEach((match) => {
 doc.match('#Pronoun #Verb').verbs().toPastTense()
 
 // Dates
+		// working on showing timespan instead of years
 	// doc.match('#Year * #Year').forEach((match) => {
 	// 	match.replace('Year');
 	// });
@@ -82,10 +80,7 @@ doc.match('#Pronoun #Verb').verbs().toPastTense()
 	});
 
 // Contact information
-	doc.emails().replace('Email address');
-	// doc.phoneNumbers().replace('(###) ###-###')
-	// doc.atMentions().replace('@***')
-	// linkedin yasser
+	doc.emails().replace('Redacted Email address');
 
 	return doc.text();
 }
