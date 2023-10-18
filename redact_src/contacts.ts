@@ -6,7 +6,7 @@ export function redactContacts(cv:string)
 	const instagram = /https:\/\/(www\.)?instagram\.com\S*/gi 
 	const github = /https:\/\/(www\.)?github\.com\S*/gi 
 	// const phoneNumber = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
-	const phoneNumberRegex = /[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}/gi;
+	const phoneNumberRegex = /\+\w+\s[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,4}/g;
 	// const email = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/gi;
 	
 	// Replace matched patterns with asterisks

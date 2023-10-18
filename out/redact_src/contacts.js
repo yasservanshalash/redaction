@@ -8,7 +8,7 @@ function redactContacts(cv) {
     var instagram = /https:\/\/(www\.)?instagram\.com\S*/gi;
     var github = /https:\/\/(www\.)?github\.com\S*/gi;
     // const phoneNumber = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
-    var phoneNumberRegex = /[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}/gi;
+    var phoneNumberRegex = /\+\w+\s[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,4}/g;
     // const email = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/gi;
     // Replace matched patterns with asterisks
     cv = cv.replace(linkedin, '********');
