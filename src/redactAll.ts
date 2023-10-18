@@ -6,7 +6,7 @@
 /*   By: mstegema <mstegema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/17 15:53:05 by mstegema      #+#    #+#                 */
-/*   Updated: 2023/10/18 15:37:24 by mstegema      ########   odam.nl         */
+/*   Updated: 2023/10/18 16:47:27 by mstegema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ function redactAll(text: string, fullName: string): string {
 	});
 
 // Pronouns (gender)
-doc.match('#Pronoun #Copula').match('was').forEach((match) => {
-	match.replace('were');
-});
+// doc.match('#Pronoun #Copula').match('was').forEach((match) => {
+// 	match.replace('were');
+// });
+
 doc.match('#Pronoun !#Noun').match('#Pronoun').forEach((match) => {
 	const pronoun = match.text().toLowerCase();
 	if (pronounMap[pronoun]) {
