@@ -50,6 +50,11 @@
 		"n": "sibling"
 	},
 	{
+		"m": "cleaner",
+		"f": "maid",
+		"n": "cleaner"
+	},
+	{
 		"m": "count",
 		"f": "countess",
 		"n": "noble"
@@ -115,6 +120,11 @@
 		"n": "founder"
 	},
 	{
+		"m": "forefather",
+		"f": "ancestor",
+		"n": "ancestor"
+	},
+	{
 		"m": "friar",
 		"f": "nun",
 		"n": "friar"
@@ -122,7 +132,12 @@
 	{
 		"m": "gentleman",
 		"f": "lady",
-		"n": "*****"
+		"n": "person"
+	},
+	{
+		"m": "gentlemen",
+		"f": "ladies",
+		"n": "people"
 	},
 	{
 		"m": "governor",
@@ -152,22 +167,27 @@
 	{
 		"m": "heir",
 		"f": "heiress",
-		"n": "*****"
+		"n": "heir"
 	},
 	{
 		"m": "hero",
 		"f": "heroine",
-		"n": "*****"
+		"n": "hero"
 	},
 	{
 		"m": "host",
 		"f": "hostess",
-		"n": "*****"
+		"n": "host"
+	},
+	{
+		"m": "housewife",
+		"f": "househusband",
+		"n": "homemaker"
 	},
 	{
 		"m": "hunter",
 		"f": "huntress",
-		"n": "*****"
+		"n": "hunter"
 	},
 	{
 		"m": "husband",
@@ -225,6 +245,11 @@
 		"n": "servant"
 	},
 	{
+		"m": "mailman",
+		"f": "postman",
+		"n": "mail carrier"
+	},
+	{
 		"m": "mayor",
 		"f": "mayoress",
 		"n": "mayor"
@@ -235,14 +260,9 @@
 		"n": "millionaire"
 	},
 	{
-		"m": "monk",
-		"f": "nun",
-		"n": "*****"
-	},
-	{
 		"m": "murderer",
 		"f": "murderess",
-		"n": "*****"
+		"n": "murderer"
 	},
 	{
 		"m": "nephew",
@@ -282,7 +302,7 @@
 	{
 		"m": "priest",
 		"f": "priestess",
-		"n": "*****"
+		"n": "religious leader"
 	},
 	{
 		"m": "prince",
@@ -307,7 +327,7 @@
 	{
 		"m": "protector",
 		"f": "protectress",
-		"n": "*****"
+		"n": "protector"
 	},
 	{
 		"m": "salesman",
@@ -327,7 +347,12 @@
 	{
 		"m": "songster",
 		"f": "songstress",
-		"n": "*****"
+		"n": "singer"
+	},
+	{
+		"m": "spokesman",
+		"f": "spokeswoman",
+		"n": "spokesperson"
 	},
 	{
 		"m": "step-father",
@@ -347,7 +372,7 @@
 	{
 		"m": "sultan",
 		"f": "sultana",
-		"n": "*****"
+		"n": "ruler"
 	},
 	{
 		"m": "traitor",
@@ -368,6 +393,11 @@
 		"m": "waiter",
 		"f": "waitress",
 		"n": "server"
+	},
+	{
+		"m": "weatherman",
+		"f": "weatherman",
+		"n": "meteorologist"
 	},
 	{
 		"m": "widower",

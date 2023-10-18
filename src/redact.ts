@@ -6,6 +6,7 @@ export function redact(cv:string, name:string)
 	let words:string[] = cv.split(" ");
 
 	words.forEach(function (value, index) {
+		//checks and replaces gendered words
 		words[index] = replaceGender(value);
 		if (index > 0 && words[index - 1].toLocaleLowerCase() == "an" && words[index].charAt(0).match(/[aeiou]/) == null)
 		{
