@@ -7,7 +7,7 @@ var other_1 = require("./other");
 function redact(cv, name) {
     cv = (0, contacts_1.redactContacts)(cv);
     cv = (0, gender_1.replaceGender)(cv);
-    cv = (0, other_1.redactOther)(cv, "Alice");
+    cv = (0, other_1.redactOther)(cv, name);
     return (cv);
 }
 exports.redact = redact;

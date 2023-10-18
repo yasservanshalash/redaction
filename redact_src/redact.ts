@@ -6,7 +6,7 @@ export function redact(cv:string, name:string)
 {
 	cv = redactContacts(cv);
 	cv = replaceGender(cv);
-	cv = redactOther(cv, "Alice");
+	cv = redactOther(cv, name);
 
 	return (cv);
 }

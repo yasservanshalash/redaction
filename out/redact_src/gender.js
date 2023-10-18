@@ -10,7 +10,6 @@ function capitalizeFirstLetter(word) {
 }
 exports.capitalizeFirstLetter = capitalizeFirstLetter;
 function findAndReplace(word) {
-    console.log(word);
     var find = word.toLocaleLowerCase();
     var returnValue = find;
     mfn_json_1.default.forEach(function (value) {

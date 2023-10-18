@@ -6,7 +6,6 @@ export function capitalizeFirstLetter(word) {
 
 function findAndReplace(word:string)
 {
-	console.log(word);
 	let find:string = word.toLocaleLowerCase();
 	let returnValue:string = find;
 
