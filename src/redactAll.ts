@@ -6,7 +6,7 @@
 /*   By: mstegema <mstegema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/17 15:53:05 by mstegema      #+#    #+#                 */
-/*   Updated: 2023/10/18 15:18:55 by mstegema      ########   odam.nl         */
+/*   Updated: 2023/10/18 15:30:00 by mstegema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ function redactAll(text: string, fullName: string): string {
 		hers: 'their',
 	};
 
-	const maritalStatus = /(\bmarital status\b|\bmarital\b|\bmarriage\b)[^,.:;]*[:.,;]?[^,.:;]*/gi;
+	// const maritalStatus = /(\bMarital\b|\bMarital status\b|\bmarital\b|\bmarital status\b|\bmarriage\b)[^,.:;]*[:.,;]?[^,.:;]*/gi;
 
 //	Personal info
 	doc.match(fullName).forEach((match) => {
 		match.replace('Candidate');
 	});
-	doc = doc.replace(maritalStatus, 'Marital status: redacted');
+	// doc = doc.replace(maritalStatus, 'Marital status: redacted');
 
 // Location
 	doc.match('#Country').forEach((match) => {
