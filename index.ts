@@ -1,8 +1,12 @@
 import {redact} from './redact_src/redact';
 
-// let cv:string = "Alice won the best actress award in 2013. An actress's greatest dream. She was a baroness. A Mother. A girl in a big world. A waitress working nine till six. She was the first woman on the moon.";
-// let name:string = "Alice";
 let cv = `
+Yasser won the best actress award in 2013.
+An actress's greatest dream. She was a baroness.
+A Mother. A girl in a big world. A waitress working nine till six. 
+She was the first woman on the moon.
+
+
 Yasser Shalash
 waiter at restaurant
 Her residence was in the netherlands where Her her 
@@ -69,4 +73,4 @@ let name = "Yasser Shalash";
 let new_cv:string = redact(cv, name);
 
 // console.log("Original: " + cv);
-console.log("Redacted: " + new_cv);
+console.log("Redacted:\n" + new_cv);
